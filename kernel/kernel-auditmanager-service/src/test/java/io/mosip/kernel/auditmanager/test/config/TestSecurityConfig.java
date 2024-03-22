@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -20,7 +22,6 @@ import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.firewall.DefaultHttpFirewall;
 import org.springframework.security.web.firewall.HttpFirewall;
 
-import jakarta.servlet.http.HttpServletResponse;
 
 @Configuration
 @EnableWebSecurity
@@ -34,7 +35,7 @@ public class TestSecurityConfig {
 
 	@Bean
 	public void configure(WebSecurity webSecurity) throws Exception {
-		webSecurity.ignoring().requestMatchers(allowedEndPoints());
+		webSecurity.ignoring().antMatchers(allowedEndPoints());
 		webSecurity.httpFirewall(defaultHttpFirewall());
 	}
 
